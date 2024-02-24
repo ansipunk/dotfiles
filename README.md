@@ -8,6 +8,9 @@ d8P' ?88  d8P' ?88  88P     88P      88P ?88  d8b_,dP ?8b,
 '?88P''88b'?8888P'  '?8b  d88'     d88'    88b'?888P''?888P'
 ```
 
+My dotfiles to bootstrap a fresh Fedora installation.
+Should work on other distros with minimal edits in the Makefile.
+
 ### How to use:
 
 ```sh
@@ -15,6 +18,8 @@ git clone https://git.sr.ht/~ansipunk/dotfiles
 cd dotfiles
 make
 ```
+
+It is advised to restart your machine after installing some of GUI and Docker packages.
 
 ### What's included:
 
