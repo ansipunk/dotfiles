@@ -1,0 +1,54 @@
+[alias]
+a = add
+ap = add -p
+amend = commit --amend --reuse-message=HEAD
+branches = branch -a
+c = commit
+d = diff
+dc = diff --cached
+l = log --pretty=format:'%C(red)%h%C(reset) %C(yellow)%an: %C(reset)%s %C(green)(%cr)' --graph --date=relative
+ln = log --pretty=format:'%C(red)%h%C(reset) %C(yellow)%an: %C(reset)%s %C(green)(%cr)' --graph --date=relative -n 10
+remotes = remote -v
+st = status -s
+sup = submodule update --remote --rebase
+tags = tag -l
+uncommit = reset --soft HEAD^
+unstage = reset HEAD
+
+[core]
+editor = nvim
+
+[color]
+branch = auto
+diff = auto
+interactive = auto
+status = auto
+ui = auto
+
+[status]
+relativePaths = false
+submoduleSummary = true
+
+[diff]
+algorithm = patience
+indentHeuristic = true
+submodule = log
+
+[credential]
+helper = cache --timeout=3600
+
+[fetch]
+prune = true
+
+[gc]
+auto = 1
+
+[merge]
+summary = true
+
+[pull]
+default = simple
+rebase = true
+
+[push]
+default = simple

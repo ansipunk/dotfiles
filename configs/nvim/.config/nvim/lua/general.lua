@@ -1,0 +1,36 @@
+-- General settings
+
+vim.opt.laststatus = 3                -- Global statusline
+vim.opt.number = true                 -- Show line numbers
+vim.opt.cursorline = true             -- Highlight current line
+vim.opt.wrap = false                  -- Do not wrap lines
+vim.opt.showmatch = true              -- Highlight matching braces
+vim.opt.visualbell = true             -- Use visual bell (no beeping)
+vim.opt.expandtab = true              -- Use spaces instead of tabs for indentation
+vim.opt.shiftwidth = 4                -- Number of auto-indent spaces
+vim.opt.smartindent = true            -- Enable smart-indent
+vim.opt.softtabstop = 4               -- Number of spaces per Tab
+vim.opt.confirm = true                -- Prompt confirmation dialogs
+vim.opt.showtabline = 2               -- Show tab bar
+vim.opt.undolevels = 1000             -- Number of undo levels
+vim.opt.wildmode = "list:longest"     -- List all matches and complete to the longest match
+vim.opt.splitbelow = true             -- Split directions
+vim.opt.splitright = true             -- Split directions
+vim.opt.updatetime = 100              -- Update time
+vim.opt.mouse = "a"                   -- Enable mouse
+vim.opt.foldlevel = 99                -- Increase fold levels
+vim.opt.ignorecase = true             -- Case insensitive search
+vim.opt.smartcase = true              -- Disable "ignorecase" if the term contains upper-case
+vim.opt.undofile = true               -- Save undo history between sessions
+vim.opt.tabstop = 4                   -- Tab length
+vim.opt.scrolloff = 0                 -- Scroll to the end of window
+vim.opt.termguicolors = true          -- Enable True Color
+vim.opt.showmode = false              -- Disable mode display in command line
+vim.opt.backupcopy = "yes"
+vim.opt.completeopt = "menuone,noselect"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.list = true
+vim.g.mapleader = "<Space>"
+vim.cmd("set shortmess+=c")
+vim.cmd("set completeopt=menu,menuone,noselect")
