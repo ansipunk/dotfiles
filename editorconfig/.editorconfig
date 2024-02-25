@@ -10,7 +10,9 @@ trim_trailing_whitespace = true
 
 [*.{yml,yaml}]
 indent_size = 2
-indent_style = space
 
-[*.{markdown.md}]
+[*.{markdown,md}]
 trim_trailing_whitespace = false
+
+[*.{py,toml,yml,yaml}]
+indent_style = space
