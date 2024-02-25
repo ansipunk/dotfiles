@@ -191,10 +191,11 @@ cli: rpmfusion .installed-cli
 gui: 1password .installed-gui
 .installed-gui:
 	sudo dnf groupupdate -y core
+	sudo dnf copr enable -y derisis13/ani-cli
 	sudo dnf install -y \
 		gnome-extensions-app gnome-shell-extension-appindicator gnome-tweaks mpv \
 		gnome-shell-extension-dash-to-dock kitty intel-media-driver steam-devices \
-		gnome-shell-extension-user-theme adw-gtk3-theme
+		gnome-shell-extension-user-theme adw-gtk3-theme ani-cli
 	sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
 	sudo dnf groupupdate -y multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 	sudo dnf groupupdate -y sound-and-video
