@@ -159,8 +159,9 @@ upgrade: .installed-upgrade
 	sudo rm -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:phracer:PyCharm.repo
 	sudo rm -f /etc/yum.repos.d/google-chrome.repo
 	sudo dnf remove -y \
-		libreoffice* gnome-maps gnome-contacts cheese gnome-terminal gnome-calendar \
-		gnome-calculator gnome-tour gnome-weather gnome-clocks gnome-boxes
+		libreoffice* gnome-maps gnome-contacts cheese gnome-terminal gnome-calendar gnome-text-editor \
+		gnome-calculator gnome-tour gnome-weather gnome-clocks gnome-boxes mediawriter gnome-connections \
+		gnome-remote-desktop gnome-shell-extension-background-logo totem rhythmbox simple-scan gnome-characters
 	sudo dnf upgrade --refresh -y
 	touch .installed-upgrade
 
