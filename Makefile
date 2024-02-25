@@ -3,7 +3,7 @@
 HOME_BIN = $(HOME)/.local/bin
 HOME_SHARE = $(HOME)/.local/share
 
-GOPATH ?= $(HOME)/Go
+GOPATH = $(HOME)/Go
 NPM_PACKAGES ?= $(HOME)/.npm-packages
 
 BUN = $(HOME)/.bun/bin/bun
@@ -15,6 +15,8 @@ LUALS = $(HOME_BIN)/lua-language-server
 PYLS = $(HOME_BIN)/pylsp
 TSLS = $(NPM_PACKAGES)/bin/typescript-language-server
 ZIGLS = $(HOME_BIN)/zls
+
+$(shell mkdir -p $(HOME_BIN) $(HOME_SHARE))
 
 help:
 	@echo "      d8b                    ,d8888b d8,  d8b"
@@ -54,7 +56,7 @@ languages: c go javascript lua python zig
 
 editorconfig: cli $(HOME)/.editorconfig
 $(HOME)/.editorconfig:
-	stow -t $(HOME) configs/editorconfig
+	stow -t $(HOME) editorconfig
 
 fonts: cli $(HOME_SHARE)/fonts/Inter.ttc $(HOME_SHARE)/fonts/MonaspiceNeNerdFontMono-Regular.otf
 $(HOME_SHARE)/fonts/Inter.ttc:
@@ -63,37 +65,39 @@ $(HOME_SHARE)/fonts/Inter.ttc:
 	unzip /tmp/Inter.zip -d /tmp/Inter
 	mv /tmp/Inter/*.ttf /tmp/Inter/*.ttc $(HOME_SHARE)/fonts
 	rm -rf /tmp/Inter.zip /tmp/Inter
+	fc-cache -f
 $(HOME_SHARE)/fonts/MonaspiceNeNerdFontMono-Regular.otf:
 	mkdir -p $(HOME_SHARE)/fonts
 	curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Monaspace.zip > /tmp/Monaspace.zip
 	unzip /tmp/Monaspace.zip -d /tmp/Monaspace
 	mv /tmp/Monaspace/*.otf $(HOME_SHARE)/fonts
 	rm -rf /tmp/Monaspace.zip /tmp/Monaspace
+	fc-cache -f
 
 git: cli $(HOME)/.gitconfig
 $(HOME)/.gitconfig:
-	stow -t $(HOME) configs/git
+	stow -t $(HOME) git
 
 kitty: cli $(HOME)/.config/kitty/kitty.conf
 $(HOME)/.config/kitty/kitty.conf:
-	stow -t $(HOME) configs/kitty
+	stow -t $(HOME) kitty
 
 nvim: cli $(HOME)/.config/nvim/init.lua
 $(HOME)/.config/nvim/init.lua:
-	stow -t $(HOME) configs/nvim
+	stow -t $(HOME) nvim
 	mkdir -p $(HOME_SHARE)/nvim/site/pack/paqs/start
 	git clone --depth=1 https://github.com/savq/paq-nvim.git $(HOME_SHARE)/nvim/site/pack/paqs/start/paq-nvim
 	nvim --headless -c "autocmd User PaqDoneInstall ++once quit" +PaqInstall
 
 tmux: cli $(HOME)/.tmux.conf
 $(HOME)/.tmux.conf:
-	stow -t $(HOME) configs/tmux
+	stow -t $(HOME) tmux
 	git clone https://github.com/tmux-plugins/tpm $(HOME)/.tmux/plugins/tpm
 	$(HOME)/.tmux/plugins/tpm/bin/install_plugins
 
 zsh: cli $(HOME)/.zshrc
 $(HOME)/.zshrc:
-	stow -t $(HOME) configs/zsh
+	stow -t $(HOME) zsh
 	curl -fsSL https://starship.rs/install.sh > /tmp/starship_install.sh
 	sh /tmp/starship_install.sh --yes
 	rm -f /tmp/starship_install.sh
@@ -152,8 +156,10 @@ $(ZIGLS):
 
 upgrade: .installed-upgrade
 .installed-upgrade:
+	sudo rm -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:phracer:PyCharm.repo
+	sudo rm -f /etc/yum.repos.d/google-chrome.repo
 	sudo dnf remove -y \
-		openoffice* gnome-maps gnome-contacts cheese gnome-terminal gnome-calendar \
+		libreoffice* gnome-maps gnome-contacts cheese gnome-terminal gnome-calendar \
 		gnome-calculator gnome-tour gnome-weather gnome-clocks gnome-boxes
 	sudo dnf upgrade --refresh -y
 	touch .installed-upgrade
@@ -169,28 +175,30 @@ cli: rpmfusion .installed-cli
 		autoconf automake bat byacc cargo clang clang-devel cmake curl fd-find \
 		g++ gcc git go llvm llvm-devel neovim ninja-build nodejs npm pip python \
 		python-devel rust stow the_silver_searcher tmux unrar unzip pipx wget \
-		util-linux-user zig zsh htop neofetch
+		util-linux-user zig zsh htop neofetch poetry sqlite3
 	touch .installed-cli
 
-gui: cli .installed-gui
-.installed-gui:
-	sudo dnf groupupdate -y core
-	sudo dnf install -y \
-		gnome-extensions-app gnome-shell-extension-appindicator gnome-tweaks steam \
-		gnome-shell-extension-dash-to-dock kitty intel-media-driver thunderbird vlc
-	sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-	sudo dnf groupupdate -y multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
-	sudo dnf groupupdate -y sound-and-video
-	touch .installed-gui
-
-1password: gui .installed-1password
+1password: cli .installed-1password
 .installed-1password:
 	sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
-	sudo sh -c 'echo -e "[1password]\nname=1Password Stable Channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=\"https://downloads.1password.com/linux/keys/1password.asc\"" > /etc/yum.repos.d/1password.repo'
+	sudo sh -c 'echo -e "[1password]\nname=1Password Stable Channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=\"https://downloads.1password.com/linux/keys/1password.asc\"" > /etc/yum.repos.d/1password.repo'
 	sudo dnf install -y 1password 1password-cli
 	touch .installed-1password
 
-docker: 1password .installed-docker
+gui: 1password .installed-gui
+.installed-gui:
+	sudo dnf groupupdate -y core
+	sudo dnf install -y \
+		gnome-extensions-app gnome-shell-extension-appindicator gnome-tweaks mpv \
+		gnome-shell-extension-dash-to-dock kitty intel-media-driver steam-devices \
+		gnome-shell-extension-user-theme adw-gtk3-theme
+	sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+	sudo dnf groupupdate -y multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+	sudo dnf groupupdate -y sound-and-video
+	cat dump.conf | dconf load /
+	touch .installed-gui
+
+docker: gui .installed-docker
 .installed-docker:
 	sudo dnf -y install dnf-plugins-core
 	sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
@@ -211,4 +219,6 @@ flatpak: .installed-flatpak
 	flatpak install -y flathub com.obsproject.Studio
 	flatpak install -y flathub dev.aunetx.deezer
 	flatpak install -y flathub com.spotify.Client
+	flatpak install -y flathub org.mozilla.Thunderbird
+	flatpak install -y flathub com.valvesoftware.Steam
 	touch .installed-flatpak

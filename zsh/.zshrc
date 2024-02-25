@@ -14,7 +14,6 @@ alias "grep=grep --color=auto"
 alias "info=info --vi-keys"
 
 command -v starship > /dev/null && eval "$(starship init zsh)"
-command -v bun > /dev/null && source "$HOME/.bun/_bun"
 
 export PYTEST_PROC_NUM=16
 

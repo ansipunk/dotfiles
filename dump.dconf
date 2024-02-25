@@ -1,0 +1,68 @@
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'us'), ('xkb', 'ru')]
+xkb-options=['grp:win_space_toggle', 'caps:escape']
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+document-font-name='Inter 12'
+enable-hot-corners=false
+font-antialiasing='rgba'
+font-hinting='full'
+font-name='Inter Display 12'
+gtk-theme='adw-gtk3-dark'
+monospace-font-name='MonaspiceNe Nerd Font Mono 12'
+show-battery-percentage=true
+
+[org/gnome/desktop/peripherals/touchpad]
+send-events='disabled'
+two-finger-scrolling-enabled=true
+
+[org/gnome/desktop/privacy]
+report-technical-problems=true
+
+[org/gnome/desktop/search-providers]
+disable-external=true
+
+[org/gnome/desktop/session]
+idle-delay=uint32 900
+
+[org/gnome/desktop/wm/preferences]
+titlebar-font='Inter Display Semi-Bold 12'
+
+[org/gnome/settings-daemon/plugins/power]
+sleep-inactive-ac-timeout=3600
+sleep-inactive-battery-timeout=1800
+
+[org/gnome/shell]
+disabled-extensions=['background-logo@fedorahosted.org']
+enabled-extensions=['appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com']
+favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'kitty.desktop', '1password.desktop', 'org.prismlauncher.PrismLauncher.desktop', 'com.discordapp.Discord.desktop', 'com.valvesoftware.Steam.desktop', 'org.mozilla.Thunderbird.desktop', 'org.telegram.desktop.desktop', 'dev.aunetx.deezer.desktop']
+welcome-dialog-last-shown-version='45.0'
+
+[org/gnome/shell/extensions/dash-to-dock]
+application-counter-overrides-notifications=true
+background-color='rgb(0,0,0)'
+background-opacity=1.0
+custom-background-color=true
+custom-theme-shrink=true
+customize-alphas=true
+dash-max-icon-size=48
+disable-overview-on-startup=true
+dock-fixed=true
+dock-position='LEFT'
+extend-height=true
+height-fraction=0.9
+max-alpha=1.0
+min-alpha=0.0
+show-mounts-network=true
+show-trash=false
+transparency-mode='DYNAMIC'
+
+[org/gnome/software]
+first-run=false
+
+[org/gnome/system/location]
+enabled=true
+
+[org/gnome/tweaks]
+show-extensions-notice=false

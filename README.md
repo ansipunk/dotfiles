@@ -30,9 +30,9 @@ It is advised to restart your machine after installing some of GUI and Docker pa
   Deezer and a few of essential GNOME shell extensions;
 - Language servers for some of the languages;
 - Docker;
+- GNOME configs;
 - Nice fonts.
 
 ### What's not included:
 
-- GNOME configs: dconf is shit and GNOME is rarely backwards compatible;
 - Wallpapers: do you even see your wallpaper except when you are making a screenshot?
