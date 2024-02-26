@@ -204,7 +204,7 @@ gui: 1password .installed-gui
 	sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
 	sudo dnf groupupdate -y multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 	sudo dnf groupupdate -y sound-and-video
-	cat dump.conf | dconf load /
+	cat dump.dconf | dconf load /
 	touch .installed-gui
 
 docker: gui .installed-docker
