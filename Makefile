@@ -127,6 +127,8 @@ $(TSLS):
 	npm i -g yarn typescript typescript-language-server
 $(DENO):
 	curl -fsSL https://deno.land/install.sh | sh
+	mkdir -p $(HOME)/.zfunc
+	$(shell command -v deno) completions zsh > $(HOME)/.zfunc/_deno
 $(BUN):
 	curl -fsSL https://bun.sh/install | sh
 
@@ -177,6 +179,8 @@ cli: rpmfusion .installed-cli
 		g++ gcc git go llvm llvm-devel neovim ninja-build nodejs npm pip python \
 		python-devel rust stow the_silver_searcher tmux unrar unzip pipx wget \
 		util-linux-user zig zsh htop neofetch poetry sqlite3
+	mkdir -p $(HOME)/.zfunc
+	$(shell command -v poetry) completions zsh > $(HOME)/.zfunc/_poetry
 	touch .installed-cli
 
 1password: cli .installed-1password

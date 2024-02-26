@@ -17,14 +17,10 @@ command -v starship > /dev/null && eval "$(starship init zsh)"
 
 export PYTEST_PROC_NUM=16
 
-mkdir -p ~/.zfunc
 fpath+=~/.zfunc
 zstyle :compinstall filename ~/.zshrc
 autoload -Uz compinit
 compinit
-
-$(command -v poetry) completions zsh > ~/.zfunc/_poetry
-$(command -v deno) completions zsh > ~/.zfunc/_deno
 
 autoload -U bashcompinit
 bashcompinit
