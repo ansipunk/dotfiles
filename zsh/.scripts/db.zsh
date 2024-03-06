@@ -1,6 +1,5 @@
-function mkdb { docker run --name $1 -p 5432:5432 -e POSTGRES_DB=$1 -e POSTGRES_USER=$1 -e POSTGRES_PASSWORD=$1 -d --rm docker.io/postgres:alpine -c max_connections=65535 }
-function dbip { docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $1 }
-function dbsh { docker exec -it $1 psql $1 $1 }
+function mkdb { docker run --name postgres -p 5432:5432 -e POSTGRES_DB=postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -d --rm docker.io/postgres:alpine -c max_connections=65535 }
+function dbsh { docker exec -it postgres psql postgres postgres }
 
 function _srccomp {
 	local dirs;
