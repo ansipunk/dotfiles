@@ -12,6 +12,7 @@ DENO = $(HOME)/.deno/bin/deno
 GOLINT = $(GOPATH)/bin/golangci-lint
 GOLS = $(GOPATH)/bin/gopls
 LUALS = $(HOME_BIN)/lua-language-server
+PIP = $(HOME)/.pip/pip.conf
 PYLS = $(HOME_BIN)/pylsp
 TSLS = $(NPM_PACKAGES)/bin/typescript-language-server
 ZIGLS = $(HOME_BIN)/zls
