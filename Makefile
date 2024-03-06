@@ -143,13 +143,15 @@ $(LUALS):
 	chmod a+x $(LUALS)
 	rm -f /tmp/lua-ls.tar.gz
 
-python: cli $(PYLS)
+python: cli $(PYLS) $(PIP)
 $(PYLS):
 	pipx install python-lsp-server
 	pipx install mypy
 	pipx install ruff
 	pipx install ruff-lsp
 	pipx inject python-lsp-server mypy
+$(PIP):
+	stow -t $(HOME) pip
 
 zig: $(ZIGLS)
 $(ZIGLS):
