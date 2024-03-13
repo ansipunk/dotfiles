@@ -229,7 +229,6 @@ flatpak: .installed-flatpak
 	flatpak install -y flathub com.discordapp.Discord
 	flatpak install -y flathub org.telegram.desktop
 	flatpak install -y flathub com.obsproject.Studio
-	flatpak install -y flathub dev.aunetx.deezer
 	flatpak install -y flathub com.spotify.Client
 	flatpak install -y flathub org.mozilla.Thunderbird
 	flatpak install -y flathub com.valvesoftware.Steam

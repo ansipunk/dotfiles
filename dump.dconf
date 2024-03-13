@@ -36,7 +36,7 @@ sleep-inactive-battery-timeout=1800
 [org/gnome/shell]
 disabled-extensions=['background-logo@fedorahosted.org']
 enabled-extensions=['appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com']
-favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'kitty.desktop', '1password.desktop', 'org.prismlauncher.PrismLauncher.desktop', 'com.discordapp.Discord.desktop', 'com.valvesoftware.Steam.desktop', 'org.mozilla.Thunderbird.desktop', 'org.telegram.desktop.desktop', 'dev.aunetx.deezer.desktop']
+favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'kitty.desktop', '1password.desktop', 'org.prismlauncher.PrismLauncher.desktop', 'com.discordapp.Discord.desktop', 'com.valvesoftware.Steam.desktop', 'org.mozilla.Thunderbird.desktop', 'org.telegram.desktop.desktop', 'com.spotify.Client.desktop']
 welcome-dialog-last-shown-version='45.0'
 
 [org/gnome/shell/extensions/dash-to-dock]
